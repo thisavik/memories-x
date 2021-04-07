@@ -93,13 +93,15 @@ const Form = ({ currentId, setCurrentId }) => {
           label="Message"
           fullWidth
           value={postData.message}
+          multiline
+          rows={4}
           onChange={(e) =>
             setPostData({ ...postData, message: e.target.value })
           }
         />
         <TextField
           name="tags"
-          variant="filled"
+          variant="outlined"
           label="Tags"
           fullWidth
           value={postData.tags}
