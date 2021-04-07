@@ -20,10 +20,9 @@ app.use("/posts", postRoutes);
 app.get("/", (req, res) => {
   res.send("Hello to Memories API");
 });
+
 // db setup
 connectAtlasDB();
-
-app.get("/", (req, res) => res.send(`<h1>Hello</h1>`));
 
 const port = process.env.PORT || 5000;
 

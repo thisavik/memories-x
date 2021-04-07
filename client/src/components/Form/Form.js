@@ -99,7 +99,7 @@ const Form = ({ currentId, setCurrentId }) => {
         />
         <TextField
           name="tags"
-          variant="outlined"
+          variant="filled"
           label="Tags"
           fullWidth
           value={postData.tags}

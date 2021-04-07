@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-const url = process.env.REACT_APP_URL;
+const api = axios.create({ baseURL: process.env.REACT_APP_URL });
 
 export const fetchPosts = async () => {
   try {
-    const res = await axios.get(url);
+    const res = await api.get(`/posts`);
     return res;
   } catch (err) {
     console.log(err);
@@ -14,7 +14,7 @@ export const fetchPosts = async () => {
 
 export const createPost = async (newPost) => {
   try {
-    const res = await axios.post(url, newPost);
+    const res = await api.post(`/posts`, newPost);
     return res;
   } catch (err) {
     console.log(err);
@@ -24,7 +24,7 @@ export const createPost = async (newPost) => {
 
 export const updatedPost = async (id, updatedPost) => {
   try {
-    const res = await axios.patch(`${url}/${id}`, updatedPost);
+    const res = await api.patch(`/posts/${id}`, updatedPost);
     return res;
   } catch (err) {
     console.log(err);
@@ -34,7 +34,7 @@ export const updatedPost = async (id, updatedPost) => {
 
 export const deletePost = async (id) => {
   try {
-    await axios.delete(`${url}/${id}`);
+    await api.delete(`/posts/${id}`);
   } catch (err) {
     console.log(err);
     return { "message": "Something goes wrong." };
@@ -43,7 +43,7 @@ export const deletePost = async (id) => {
 
 export const likePost = async (id) => {
   try {
-    const res = await axios.patch(`${url}/${id}/likePost`);
+    const res = await api.patch(`/posts/${id}/likePost`);
     return res;
   } catch (err) {
     console.log(err);
