@@ -5,8 +5,6 @@ const User = require('../models/user');
 
 const signin = async (req, res) => {
   const result = req.body;
-  
-  console.log(result);
   try {
     const existingUser = await User.findOne({ email: result?.email });
     if(!existingUser)
@@ -28,8 +26,6 @@ const signin = async (req, res) => {
 
 const signup = async (req, res) => {
   const result = req.body;
-
-  console.log(result);
   try{
     const existingUser = await User.findOne({ email: result?.email });
     if(existingUser)
