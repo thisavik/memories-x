@@ -9,20 +9,36 @@ import useStyles from './styles';
 
 import Input from './Input';
 import Icon from './Icon';
+import { signin, signup } from '../../actions/auth';
+
+const initialFormData = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
 
 const Auth = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(initialFormData);
 
-  const handleSubmit = () => {}
-  const handleChange = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if(isSignup) {
+      dispatch(signup(formData, history));
+    } else {
+      dispatch(signin(formData, history));
+    }
+
+    console.log(formData);
+  }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
   const handleShowPassword = () => setShowPassword(prevShowPassword => !prevShowPassword);
   const switchMode = () => {
     setIsSignup(prevIsSignup => !prevIsSignup);
-    setShowPassword(false);
+    setShowPassword(true);
   }
 
   const googleSuccess = async (res) => {

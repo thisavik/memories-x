@@ -4,7 +4,7 @@ const cors = require("cors");
 const connectLocalDB = require("./db/dbLocal.js").connectDB;
 const connectAtlasDB = require("./db/dbAtlas.js").connectDB;
 const postRoutes = require("./routes/posts.js");
-
+const userRoutes = require("./routes/users");
 // env config
 require("dotenv").config();
 const app = express();
@@ -14,8 +14,11 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// localhost:8626/posts
+// localhost:5000/posts
 app.use("/posts", postRoutes);
+
+// localhost:5000/user
+app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello to Memories API");
