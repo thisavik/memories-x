@@ -2,6 +2,15 @@ const axios = require('axios');
 
 const api = axios.create({ baseURL: process.env.REACT_APP_URL });
 
+// api middleware
+api.interceptors.request.use((req) => {
+  if(localStorage.getItem('profile')) {
+    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+  }
+
+  return req;
+});
+
 export const fetchPosts = async () => {
   try {
     const res = await api.get(`/posts`);
@@ -48,5 +57,23 @@ export const likePost = async (id) => {
   } catch (err) {
     console.log(err);
     return { "message": "Invalid Post!! :(" };
+  }
+}
+
+export const signin = async (formData) => {
+  try {
+    const res = await api.post(`/user/signin`, formData);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const signup = async (formData) => {
+  try {
+    const res = await api.post(`/user/signup`, formData);
+    return res;
+  } catch (err) {
+    console.log(err);
   }
 }
