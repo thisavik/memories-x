@@ -21,6 +21,8 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialFormData);
 
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -82,7 +84,7 @@ const Auth = () => {
               {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <GoogleLogin 
-            clientId="1076674620579-34bbs19m1blhhnte066e8horofogpc9u.apps.googleusercontent.com"
+            clientId={clientId}
             render={(renderProps) => (
               <Button 
                 className={classes.googleButton} 
