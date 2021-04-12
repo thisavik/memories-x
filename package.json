@@ -2,9 +2,9 @@
   "scripts": {
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "serve": "concurrently \"cd client && npm start\" \"cd server && npm run serve\"",
-    "client-install": "cd client && npm i",
-    "server-install": "cd server && npm i",
-    "install-dep": "npm i && npm run client-install && npm run server-install"
+    "install-client": "cd client && npm i",
+    "install-server": "cd server && npm i",
+    "install-overall": "npm i && npm run client-install && npm run server-install"
   },
   "dependencies": {
     "concurrently": "^6.0.0"
